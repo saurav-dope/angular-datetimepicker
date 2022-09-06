@@ -1,0 +1,33 @@
+<div class="calendar d-flex flex-column">
+  <div class="calendar-nav d-flex justify-content-between align-items-center">
+    <div class="calendar-nav-previous-month mx-2">
+      <button class="button is-text border-0" (click) = "changeNavMonth(-1, 'month')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 4l-8 8l8 8"/></svg>
+      </button>
+    </div>
+    <div class="fs-4" style="color: #18988d">{{navDate.format('MMMM YYYY') | uppercase}}</div>
+    <div class="calendar-nav-next-month mx-2">
+      <button class="button is-text border-0" (click) = "changeNavMonth(1, 'month')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 4l8 8l-8 8"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="calendar-container">
+    <div class="calendar-header d-flex justify-content-around align-items-center fw-bold">
+      <div class="calendar-date" *ngFor="let day of weekDaysHeaderArr">{{day}}</div>
+    </div>
+    <div class="calendar-body">
+<!--      <div *ngFor="let day of gridArr" class="calendar-date">-->
+<!--        <button *ngIf="day.value !== 0" class="date-item" (click) = "selectDay(day)">{{day.value}}</button>-->
+<!--        <button *ngIf="day.value === 0" class="date-item date-item-0"></button>-->
+<!--      </div>-->
+      <div *ngFor="let rowItem of weekArray" class="calendar-date d-flex justify-content-around align-items-center">
+        <div *ngFor="let dayItem of rowItem" class="date-item-container my-2 d-flex justify-content-center align-items-center">
+          <button *ngIf="dayItem.value !== 0" class="date-item date-item-1 border-0" (click) = "selectDay(dayItem)">{{dayItem.value}}</button>
+          <button *ngIf="dayItem.value === 0" class="date-item date-item-0 border-0 pe-none"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

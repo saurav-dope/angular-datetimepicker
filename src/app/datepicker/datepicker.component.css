@@ -1,0 +1,35 @@
+.calendar{
+  height: 24rem;
+  width: 24rem;
+  -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.35);
+  -moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.35);
+  box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.35);
+}
+
+.calendar-nav{
+  height: 3rem;
+}
+
+.calendar-header{
+  height: 3rem;
+}
+
+.calendar button{
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.date-item-container{
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+}
+
+button.date-item-1:hover{
+  background-color: #18988d;
+  color: #fff;
+}
+
+
