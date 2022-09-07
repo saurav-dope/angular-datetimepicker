@@ -1,9 +1,19 @@
-.calendar{
-  height: 24rem;
+.date-time-picker{
   width: 24rem;
+  height: 33rem;
+  position: absolute;
+  z-index: 100;
+  background-color: white;
+  /*margin-left: 32px;*/
+
   -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.35);
   -moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.35);
   box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.35);
+}
+
+.calendar{
+  height: 24rem;
+  width: 24rem;
 }
 
 .calendar-nav{
@@ -30,6 +40,41 @@
 button.date-item-1:hover{
   background-color: #18988d;
   color: #fff;
+}
+
+.calendar button.date-item-1:focus{
+  background-color: #18988d;
+  color: #fff;
+}
+
+.time-input-container{
+  height: 2.8rem;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.time-input-container{
+  text-align: center;
+}
+
+.time-input-meridiem{
+  cursor: pointer;
+}
+
+.date-input{
+  width: 24rem;
+}
+
+.toggle-datetimepicker-btn > div{
+  background-color: #18988d;
+  width: 8rem;
+  height: 1.8rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  cursor: pointer;
 }
 
 

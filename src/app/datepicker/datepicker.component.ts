@@ -15,6 +15,16 @@ export class DatepickerComponent implements OnInit {
   gridArr: Array<any> = [];
   selectedDate: any;
   weekArray: any[][] = [];
+  meridiem: string = 'AM';
+  meridiemToggle: boolean = false;
+  inputHour: any = 12;
+  inputMinute: any = 30;
+  previousEvent: any;
+  currentDay: any;
+
+  //for the input element
+  inputClicked: boolean = false;
+  dateValue: any;
 
   constructor() { }
 
@@ -60,7 +70,6 @@ export class DatepickerComponent implements OnInit {
       this.gridArr.push(obj);
     }
 
-    console.log(this.gridArr)
     const arrays = [], size = 7;
 
     while (this.gridArr.length > 0) {
@@ -68,7 +77,6 @@ export class DatepickerComponent implements OnInit {
     }
 
     this.weekArray = arrays;
-    console.log(this.weekArray)
   }
 
   isAvailable(num: number): boolean{
@@ -87,9 +95,58 @@ export class DatepickerComponent implements OnInit {
 
   selectDay(day: any){
     if(day.available){
+      this.currentDay = day;
+      this.navDate.set({hours: this.inputHour, minutes: this.inputMinute});
       this.selectedDate = this.dateFromNum(day.value, this.navDate);
-      console.log(this.selectedDate)
+
+      this.selectedDate = moment(this.selectedDate).format("MM/DD/YYYY hh:mm") + ' ' + this.meridiem;
     }
+  }
+
+  toggleMeridiem(){
+    this.meridiemToggle = !this.meridiemToggle;
+    this.meridiem = this.meridiemToggle ? 'AM' : 'PM';
+  }
+
+  //for the input element
+  toggleDatePicker(){
+    this.inputClicked = !this.inputClicked;
+  }
+
+  dateValueCheck(){
+    this.dateValue = this.selectedDate
+    if (this.dateValue){
+      return true;
+    } else{
+      return false;
+    }
+  }
+
+  handleCancelBtnForDatetime(){
+    this.selectedDate = ''
+    this.toggleDatePicker();
+  }
+
+  handleSetBtnForDatetime(){
+    this.navDate.set({hours: this.inputHour, minutes: this.inputMinute});
+    this.selectedDate = this.dateFromNum(this.currentDay.value, this.navDate);
+
+    this.selectedDate = moment(this.selectedDate).format("MM/DD/YYYY hh:mm") + ' ' + this.meridiem;
+
+    this.toggleDatePicker();
+  }
+
+  dateButtonClicked(dayItem: any, event: any){
+    this.selectDay(dayItem);
+
+    if(this.previousEvent){
+      this.previousEvent.target.style.backgroundColor = '#fff';
+      this.previousEvent.target.style.color = '#000';
+    }
+    event.target.style.backgroundColor = '#18988d';
+    event.target.style.color = '#fff';
+
+    this.previousEvent = event;
   }
 
 }
